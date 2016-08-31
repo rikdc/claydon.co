@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Document Service with Azure and ASP.Net Core. | claydon.co</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="aspnet-core,azure" />
+    
+    <meta name="description" content="In many applications I write, there is usually a requirement to upload a file from the browser. I’ve written articles about this before, but now I am going to refactor the earlier approach and extract">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Document Service with Azure and ASP.Net Core.">
+<meta property="og:url" content="http://yoursite.com/2016/08/31/Document-Service-with-Azure/index.html">
+<meta property="og:site_name" content="claydon.co">
+<meta property="og:description" content="In many applications I write, there is usually a requirement to upload a file from the browser. I’ve written articles about this before, but now I am going to refactor the earlier approach and extract">
+<meta property="og:updated_time" content="2016-08-31T23:14:04.200Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Document Service with Azure and ASP.Net Core.">
+<meta name="twitter:description" content="In many applications I write, there is usually a requirement to upload a file from the browser. I’ve written articles about this before, but now I am going to refactor the earlier approach and extract">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/lightgallery/css/lightgallery.min.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Thoughts of code.</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    uncategorized
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-Document-Service-with-Azure" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Document Service with Azure and ASP.Net Core.
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2016/08/31/Document-Service-with-Azure/" class="article-date">
+    <time datetime="2016-08-31T21:37:22.000Z" itemprop="datePublished">2016-08-31</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/aspnet-core/">aspnet-core</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/azure/">azure</a></li></ul>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>In many applications I write, there is usually a requirement to upload a file from the browser. I’ve written articles about this before, but now I am going to refactor the earlier approach and extract the code to a more usable service.</p>
+<h2 id="Document-Service"><a href="#Document-Service" class="headerlink" title="Document Service"></a>Document Service</h2><p>With the Document Service, I want to create a simple API that accepts an uploaded file and persists it somewhere. It shouldn’t be exclusive for Azure at this point, so the interface will be nice and simple. We’ll upload the file, and return the permanent URL to the uploaded resource.</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IDocumentService</span></div><div class="line">&#123;</div><div class="line">    <span class="function">Task&lt;<span class="keyword">string</span>&gt; <span class="title">UploadDocument</span>(<span class="params"><span class="keyword">string</span> path, IFormFile document</span>)</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>The <code>IFormFile</code> interface is from <code>Microsoft.AspNetCore.Http</code>, and is used to reference the actual uploaded file. </p>
+<p>Next, let’s create a connection to the Azure Service. We need to include the libraries from the NuGet Package <code>&quot;WindowsAzure.Storage&quot;</code>.</p>
+<blockquote>
+<p><strong>31st August 2016</strong> If you are using ASP.Net Core you may have issues with this library. I had to reference 7.1.3-preview for this to work.</p>
+</blockquote>
+<p>To upload to Azure we need to:</p>
+<ul>
+<li>Ensure the container exists</li>
+<li>Extract the byte array of our document</li>
+<li>Upload the byte array to Azure using the UploadFromByteArrayAsync method.</li>
+</ul>
+<p>To start with, we need to connect to Azure, and for that we need settings. I’m going to cheat at this point, and make the settings class constants but we’ll refactor that out at the end.</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">AzureDocumentService</span> : <span class="title">IDocumentService</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">const</span> <span class="keyword">string</span> CONTAINER_NAME = <span class="string">"documents"</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">const</span> <span class="keyword">string</span> STORAGE_ACCOUNT = <span class="string">"***"</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task&lt;<span class="keyword">string</span>&gt; <span class="title">UploadDocument</span>(<span class="params"><span class="keyword">string</span> path, IFormFile document</span>)</span></div><div class="line">    &#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Connect to the container, and ensure it exists.</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> storageAccount = CloudStorageAccount.Parse(STORAGE_ACCOUNT);</div><div class="line"><span class="keyword">var</span> container = storageAccount.CreateCloudBlobClient().GetContainerReference(CONTAINER_NAME);</div><div class="line"></div><div class="line"><span class="keyword">await</span> container.CreateIfNotExistsAsync(BlobContainerPublicAccessType.Container, <span class="keyword">new</span> BlobRequestOptions(), <span class="keyword">new</span> OperationContext());</div></pre></td></tr></table></figure>
+<p>Extract the filename, and create a &lt;%- link_to(“<a href="https://msdn.microsoft.com/en-us/library/microsoft.windowsazure.storage.blob.cloudblobcontainer.getblockblobreference.aspx" target="_blank" rel="external">https://msdn.microsoft.com/en-us/library/microsoft.windowsazure.storage.blob.cloudblobcontainer.getblockblobreference.aspx</a>“, “CloudBlockBlob”) %&gt; reference to our container that will store the uploaded file. This method does not make any network call, and does not throw an exception so still very simple to work with.</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fileName = (ContentDispositionHeaderValue.Parse(document.ContentDisposition).FileName).Trim(<span class="string">'"'</span>).ToLower();</div><div class="line"><span class="keyword">var</span> blob = path + <span class="string">"/"</span> + fileName;</div><div class="line"></div><div class="line"><span class="keyword">var</span> blockBlob = container.GetBlockBlobReference(blob);</div></pre></td></tr></table></figure>
+<p>Next we need to upload a stream of our data.</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">blockBlob.Properties.ContentType = document.ContentType;</div><div class="line"></div><div class="line"><span class="keyword">using</span> (<span class="keyword">var</span> documentStream = document.OpenReadStream())</div><div class="line">&#123;</div><div class="line">    <span class="keyword">await</span> blockBlob.UploadFromStreamAsync(documentStream);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>And finally return the generated URI.</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">return</span> blockBlob.Uri.ToString();</div></pre></td></tr></table></figure>
+<p>So far this is quite simple!</p>
+<p>Before I close this off, I want to fix those constants in the file. </p>
+<p>Approaches for this are very well documented over at the ASP.Net documentation, and my preferred approach is to use &lt;%- link_to(“<a href="https://docs.asp.net/en/latest/fundamentals/configuration.html#options-config-objects" target="_blank" rel="external">https://docs.asp.net/en/latest/fundamentals/configuration.html#options-config-objects</a>“, “option config objects”) %&gt;. Inside the Service project, add a new class</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">AzureSettings</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">string</span> ContainerName &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">string</span> ConnectionString &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Inside asn ASP.Net Core Website, the Startup file modify the ConfigureServices method to include the following line.</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ConfigureServices</span>(<span class="params">IServiceCollection services</span>)</span></div><div class="line">&#123;</div><div class="line">    <span class="comment">//...</span></div><div class="line"></div><div class="line">    services.Configure&lt;AzureSettings&gt;(Configuration);</div><div class="line"></div><div class="line">    <span class="comment">//...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Now we need to use dependency injection on our AzureDocumentService class to expose these Azure options. </p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">readonly</span> IOptions&lt;AzureSettings&gt; _options;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">AzureDocumentService</span>(<span class="params">IOptions&lt;AzureSettings&gt; options</span>)</span></div><div class="line">&#123;</div><div class="line">    _options = options;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Remove the constants, and update the references in the code:</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> storageAccount = CloudStorageAccount.Parse(_options.Value.ConnectionString);</div><div class="line"><span class="keyword">var</span> container = storageAccount.CreateCloudBlobClient().GetContainerReference(_options.Value.ContainerName);</div></pre></td></tr></table></figure>
+<p>Now you can store the settings in the appsettings.json file. Of course, that is also frowned upon and the use of secrets here is advised - but that’s for another article.</p>
+<p>Okay, and that should be all! Read on to the next instalment where I’ll test this using Fiddler and XUnit to ensure this code works.</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2016/08/31/Document-Service-with-Azure/" data-id="cisjj4oz40000n8o12e3cukss" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="linkedin" href="/" target="_blank">
+                        <i class="icon fa fa-linkedin"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/rikdc" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2016/08/31/Unit-Testing-CloudStorageAccount/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            Unit Testing CloudStorageAccount
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2016/08/31/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Hello World</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/08/31/Unit-Testing-CloudStorageAccount/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/08/31/Unit-Testing-CloudStorageAccount/" class="title">Unit Testing CloudStorageAccount</a></p>
+                            <p class="item-date"><time datetime="2016-08-31T22:24:06.000Z" itemprop="datePublished">2016-08-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/08/31/Document-Service-with-Azure/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/08/31/Document-Service-with-Azure/" class="title">Document Service with Azure and ASP.Net Core.</a></p>
+                            <p class="item-date"><time datetime="2016-08-31T21:37:22.000Z" itemprop="datePublished">2016-08-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/08/31/hello-world/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/08/31/hello-world/" class="title">Hello World</a></p>
+                            <p class="item-date"><time datetime="2016-08-31T19:28:56.421Z" itemprop="datePublished">2016-08-31</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/aspnet-core/">aspnet-core</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/azure/">azure</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/aspnet-core/" style="font-size: 10px;">aspnet-core</a> <a href="/tags/azure/" style="font-size: 10px;">azure</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Richard Claydon</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+
+    
+        <script src="/vendor/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/vendor/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/vendor/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/vendor/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/vendor/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/vendor/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/vendor/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/vendor/lightgallery/js/lg-share.min.js"></script>
+        <script src="/vendor/lightgallery/js/lg-video.min.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

@@ -9,18 +9,18 @@
         <meta name="keywords" content="" />
     
     <meta name="description" content="In my previous post I created a very simple service to upload a document to Azure within ASP.Net Core. Comitting that code alone isn’t going to be enough for me, where are my tests?!? I ask…
-So with V">
+For this">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Unit Testing CloudStorageAccount">
 <meta property="og:url" content="http://yoursite.com/2016/08/31/Unit-Testing-CloudStorageAccount/index.html">
 <meta property="og:site_name" content="claydon.co">
 <meta property="og:description" content="In my previous post I created a very simple service to upload a document to Azure within ASP.Net Core. Comitting that code alone isn’t going to be enough for me, where are my tests?!? I ask…
-So with V">
-<meta property="og:updated_time" content="2016-08-31T23:14:19.900Z">
+For this">
+<meta property="og:updated_time" content="2016-09-01T00:26:05.821Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unit Testing CloudStorageAccount">
 <meta name="twitter:description" content="In my previous post I created a very simple service to upload a document to Azure within ASP.Net Core. Comitting that code alone isn’t going to be enough for me, where are my tests?!? I ask…
-So with V">
+For this">
     
 
     
@@ -155,15 +155,23 @@ So with V">
         
         <div class="article-entry" itemprop="articleBody">
             <p>In my previous post I created a very simple service to upload a document to Azure within ASP.Net Core. Comitting that code alone isn’t going to be enough for me, <em>where are my tests?!</em>? I ask…</p>
+<p>For this post I am writing a small test to ensure the correct API methods are called, I won’t be physically uploading any data as that will be a very slow test. In the second part of this post I’ll use Fiddler to do a live upload.</p>
 <p>So with Visual Studio still open, I’ll add a new project to the solution. </p>
-
+<p>Looking at the code I am about to test, already I can see a problem. I have a concrete dependency on CloudStorageAccount that I can’t access and so this needs to be refactored out. I can approach this in multiple ways.</p>
+<ul>
+<li>Extract it to an interface and inject it in the constructor.</li>
+<li>Pass CloudStorageAccount as a parameter to the UploadDocument method.</li>
+</ul>
+<h2 id="Pass-CloudStorageAccount-as-a-parameter-to-the-UploadDocument-method"><a href="#Pass-CloudStorageAccount-as-a-parameter-to-the-UploadDocument-method" class="headerlink" title="Pass CloudStorageAccount as a parameter to the UploadDocument method"></a>Pass CloudStorageAccount as a parameter to the UploadDocument method</h2><p>Let’s instantly dismiss this idea. Why? The entire purpose of extracting an interface was to remove the concrete dependency on Azure. By adding this reference we’re already making assumptions about the implementation of the DocumentRepository, which is just not going to happen.</p>
+<h2 id="Extract-it-to-an-interface-and-inject-it-in-the-constructor"><a href="#Extract-it-to-an-interface-and-inject-it-in-the-constructor" class="headerlink" title="Extract it to an interface and inject it in the constructor"></a>Extract it to an interface and inject it in the constructor</h2><p>In this approach, I would make an interface around the CloudStorageAccount, perhaps create some indirection here. Either way, this seems like too much effort and I don’t like it.</p>
+<h2 id="Dependency-Injection"><a href="#Dependency-Injection" class="headerlink" title="Dependency Injection"></a>Dependency Injection</h2>
         </div>
         <footer class="article-footer">
             
 
 
 
-    <a data-url="http://yoursite.com/2016/08/31/Unit-Testing-CloudStorageAccount/" data-id="cisjj4oza0002n8o1z2v33m1h" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://yoursite.com/2016/08/31/Unit-Testing-CloudStorageAccount/" data-id="cisjjk7ru0000bko1f0nnklfz" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -241,7 +249,7 @@ So with V">
             
                 
                 <li>
-                    <a class="social-tooltip" title="linkedin" href="/" target="_blank">
+                    <a class="social-tooltip" title="linkedin" href="https://www.linkedin.com/in/richardclaydon" target="_blank">
                         <i class="icon fa fa-linkedin"></i>
                     </a>
                 </li>

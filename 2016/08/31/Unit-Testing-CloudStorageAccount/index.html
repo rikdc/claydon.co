@@ -6,7 +6,7 @@
     <title>Unit Testing CloudStorageAccount | claydon.co</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="" />
+        <meta name="keywords" content="aspnet-core,xunit" />
     
     <meta name="description" content="In my previous post I created a very simple service to upload a document to Azure within ASP.Net Core. Comitting that code alone isn’t going to be enough for me, where are my tests?!? I ask…
 For this">
@@ -16,7 +16,7 @@ For this">
 <meta property="og:site_name" content="claydon.co">
 <meta property="og:description" content="In my previous post I created a very simple service to upload a document to Azure within ASP.Net Core. Comitting that code alone isn’t going to be enough for me, where are my tests?!? I ask…
 For this">
-<meta property="og:updated_time" content="2016-09-01T00:26:05.821Z">
+<meta property="og:updated_time" content="2016-09-01T15:31:25.301Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unit Testing CloudStorageAccount">
 <meta name="twitter:description" content="In my previous post I created a very simple service to upload a document to Azure within ASP.Net Core. Comitting that code alone isn’t going to be enough for me, where are my tests?!? I ask…
@@ -68,7 +68,7 @@ For this">
                                     <a class="main-nav-list-link" href="/">Home</a>
                                 </li>
                             
-                                        
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hackerank/">Hackerank</a></li></ul>
                                     
                                 <li class="main-nav-list-item" >
                                     <a class="main-nav-list-link" href="/about/index.html">About</a>
@@ -150,6 +150,8 @@ For this">
     <time datetime="2016-08-31T22:24:06.000Z" itemprop="datePublished">2016-08-31</time>
 </a>
                 
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/aspnet-core/">aspnet-core</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xunit/">xunit</a></li></ul>
+
             </div>
         
         
@@ -162,16 +164,26 @@ For this">
 <li>Extract it to an interface and inject it in the constructor.</li>
 <li>Pass CloudStorageAccount as a parameter to the UploadDocument method.</li>
 </ul>
-<h2 id="Pass-CloudStorageAccount-as-a-parameter-to-the-UploadDocument-method"><a href="#Pass-CloudStorageAccount-as-a-parameter-to-the-UploadDocument-method" class="headerlink" title="Pass CloudStorageAccount as a parameter to the UploadDocument method"></a>Pass CloudStorageAccount as a parameter to the UploadDocument method</h2><p>Let’s instantly dismiss this idea. Why? The entire purpose of extracting an interface was to remove the concrete dependency on Azure. By adding this reference we’re already making assumptions about the implementation of the DocumentRepository, which is just not going to happen.</p>
-<h2 id="Extract-it-to-an-interface-and-inject-it-in-the-constructor"><a href="#Extract-it-to-an-interface-and-inject-it-in-the-constructor" class="headerlink" title="Extract it to an interface and inject it in the constructor"></a>Extract it to an interface and inject it in the constructor</h2><p>In this approach, I would make an interface around the CloudStorageAccount, perhaps create some indirection here. Either way, this seems like too much effort and I don’t like it.</p>
-<h2 id="Dependency-Injection"><a href="#Dependency-Injection" class="headerlink" title="Dependency Injection"></a>Dependency Injection</h2>
+<h3 id="Pass-CloudStorageAccount-as-a-parameter-to-the-UploadDocument-method"><a href="#Pass-CloudStorageAccount-as-a-parameter-to-the-UploadDocument-method" class="headerlink" title="Pass CloudStorageAccount as a parameter to the UploadDocument method"></a>Pass CloudStorageAccount as a parameter to the UploadDocument method</h3><p>Let’s instantly dismiss this idea. Why? The entire purpose of extracting an interface was to remove the concrete dependency on Azure. By adding this reference we’re already making assumptions about the implementation of the DocumentRepository, which is just not going to happen.</p>
+<h3 id="Extract-it-to-an-interface-and-inject-it-in-the-constructor"><a href="#Extract-it-to-an-interface-and-inject-it-in-the-constructor" class="headerlink" title="Extract it to an interface and inject it in the constructor"></a>Extract it to an interface and inject it in the constructor</h3><p>In this approach, I would make an interface around the CloudStorageAccount, perhaps create some indirection here. Either way, this seems like too much effort and I don’t like it.</p>
+<h3 id="Dependency-Injection"><a href="#Dependency-Injection" class="headerlink" title="Dependency Injection"></a>Dependency Injection</h3><p>This approach is what I’m going to do. Unlike the previous option, it doesn’t have the overhead of forcing arbitary objects into the constructor. A service to write to the local filesystem will not necessarily require the use of a IStorageAccountCredentials object. Still using the AzureSettings object created in the last post, I’ll modify the dependency injection configuration to include a Singleton instance of the CloudStorageAccount. I’ll then inject it in the contstructor of the AzureDocumentService class.</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ConfigureServices</span>(<span class="params">IServiceCollection services</span>)</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">var</span> cloudStorageAccountSettings = Configuration.GetValue&lt;<span class="keyword">string</span>&gt;(<span class="string">"AzureSettings:ConnectionString"</span>);</div><div class="line">    <span class="keyword">var</span> cloudStorage = CloudStorageAccount.Parse(cloudStorageAccountSettings);</div><div class="line"></div><div class="line">    services.AddSingleton(cloudStorage);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Okay that code smell addressed, let’s write a unit test. If I’m not actually uploading to Azure, what am I testing? Firstly I want to ensure the right calls are made to on the Azure client library. This one is subjective, but I don’t see any harm in this. </p>
+<p>I want to ensure:</p>
+<ul>
+<li>that the Document Service does not modify the uploaded file</li>
+<li>that the api </li>
+</ul>
+<h2 id="Using-Fiddler"><a href="#Using-Fiddler" class="headerlink" title="Using Fiddler"></a>Using Fiddler</h2><p>Now I am happy the API is being called correctly, let’s finally get down to testing the upload.</p>
+<p><a href="https://gitter.im/cmatskas/Azure.Storage/archives/2016/05/10" target="_blank" rel="external">https://gitter.im/cmatskas/Azure.Storage/archives/2016/05/10</a></p>
+
         </div>
         <footer class="article-footer">
             
 
 
 
-    <a data-url="http://yoursite.com/2016/08/31/Unit-Testing-CloudStorageAccount/" data-id="cisjjk7ru0000bko1f0nnklfz" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://yoursite.com/2016/08/31/Unit-Testing-CloudStorageAccount/" data-id="citothnjj0009kko1iy9zpjbh" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -263,11 +275,29 @@ For this">
                 </li>
                 
             
+                
+                <li>
+                    <a class="social-tooltip" title="wpforms" href="https://www.hackerrank.com/rikdc" target="_blank">
+                        <i class="icon fa fa-wpforms"></i>
+                    </a>
+                </li>
+                
+            
         </ul>
     </div>
     
         
 <nav id="article-nav">
+    
+        <a href="/2016/09/28/SOLID-Principles/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            SOLID Principles
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
     
     
         <a href="/2016/08/31/Document-Service-with-Azure/" id="article-nav-older" class="article-nav-link-wrap">
@@ -287,6 +317,46 @@ For this">
         <h3 class="widget-title">recents</h3>
         <div class="widget">
             <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/09/29/Linked-List-Detect-a-Cycle/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Hackerank/">Hackerank</a></p>
+                            <p class="item-title"><a href="/2016/09/29/Linked-List-Detect-a-Cycle/" class="title">Linked List: Detect a Cycle</a></p>
+                            <p class="item-date"><time datetime="2016-09-29T20:52:32.000Z" itemprop="datePublished">2016-09-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/09/28/SOLID-Principles/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/09/28/SOLID-Principles/" class="title">SOLID Principles</a></p>
+                            <p class="item-date"><time datetime="2016-09-28T18:53:06.000Z" itemprop="datePublished">2016-09-28</time></p>
+                        </div>
+                    </li>
                 
                     <li>
                         
@@ -331,7 +401,7 @@ For this">
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2016/08/31/hello-world/" class="thumbnail">
+                            <a href="/2016/07/01/Unit-Testing-with-Visual-Studio-and-NET-Core/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -343,8 +413,8 @@ For this">
                         
                         <div class="item-inner">
                             <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/08/31/hello-world/" class="title">Hello World</a></p>
-                            <p class="item-date"><time datetime="2016-08-31T19:28:56.421Z" itemprop="datePublished">2016-08-31</time></p>
+                            <p class="item-title"><a href="/2016/07/01/Unit-Testing-with-Visual-Studio-and-NET-Core/" class="title">Unit Testing with Visual Studio and .NET Core</a></p>
+                            <p class="item-date"><time datetime="2016-07-01T14:05:55.000Z" itemprop="datePublished">2016-07-01</time></p>
                         </div>
                     </li>
                 
@@ -354,13 +424,20 @@ For this">
 
             
                 
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hackerank/">Hackerank</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
 
             
                 
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -370,7 +447,7 @@ For this">
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">tags</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/aspnet-core/">aspnet-core</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/azure/">azure</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/aspnet-core/">aspnet-core</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/azure/">azure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cqs/">cqs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/entityframework/">entityframework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hackerank/">hackerank</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xunit/">xunit</a><span class="tag-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -380,7 +457,7 @@ For this">
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/aspnet-core/" style="font-size: 10px;">aspnet-core</a> <a href="/tags/azure/" style="font-size: 10px;">azure</a>
+            <a href="/tags/aspnet-core/" style="font-size: 20px;">aspnet-core</a> <a href="/tags/azure/" style="font-size: 10px;">azure</a> <a href="/tags/cqs/" style="font-size: 10px;">cqs</a> <a href="/tags/entityframework/" style="font-size: 10px;">entityframework</a> <a href="/tags/hackerank/" style="font-size: 10px;">hackerank</a> <a href="/tags/xunit/" style="font-size: 15px;">xunit</a>
         </div>
     </div>
 

@@ -3,15 +3,21 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Archive | claydon.co</title>
+    <title>SOLID Principles | claydon.co</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta property="og:type" content="website">
-<meta property="og:title" content="claydon.co">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+        <meta name="keywords" content="" />
+    
+    <meta name="description" content="Well, I completely bungled a job interview by failing to describe what S.O.L.I.D is, even though it’s part of my daily programming life and I’ve even asked programers the same question when I’ve inter">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SOLID Principles">
+<meta property="og:url" content="http://yoursite.com/2016/09/28/SOLID-Principles/index.html">
 <meta property="og:site_name" content="claydon.co">
+<meta property="og:description" content="Well, I completely bungled a job interview by failing to describe what S.O.L.I.D is, even though it’s part of my daily programming life and I’ve even asked programers the same question when I’ve inter">
+<meta property="og:updated_time" content="2016-09-28T21:02:08.506Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="claydon.co">
+<meta name="twitter:title" content="SOLID Principles">
+<meta name="twitter:description" content="Well, I completely bungled a job interview by failing to describe what S.O.L.I.D is, even though it’s part of my daily programming life and I’ve even asked programers the same question when I’ve inter">
     
 
     
@@ -118,297 +124,120 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <i class="icon fa fa-archive"></i>Archive
+    uncategorized
     </h1>
 </div>
                         <div class="main-body-content">
-                            
+                            <article id="post-SOLID-Principles" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        SOLID Principles
+        </h1>
+    
 
-    
-    
+            </header>
         
         
-        <section class="archives-wrap">
-            <div class="archive-year-wrap">
-                <a href="/archives/2016" class="archive-year"><i class="icon fa fa-calendar-o"></i>2016</a>
+            <div class="article-subtitle">
+                <a href="/2016/09/28/SOLID-Principles/" class="article-date">
+    <time datetime="2016-09-28T18:53:06.000Z" itemprop="datePublished">2016-09-28</time>
+</a>
+                
             </div>
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
         
-        <a href="/2016/09/29/Linked-List-Detect-a-Cycle/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
         
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-</span>
+        <div class="article-entry" itemprop="articleBody">
+            <p>Well, I completely bungled a job interview by failing to describe what S.O.L.I.D is, even though it’s part of my daily programming life and I’ve even asked programers the same question when I’ve interviewed them. So for my punishment, here is a little revision.</p>
+<p>SOLID stands for five basic principles for developing good quality software architecture. It’s five principles are:</p>
+<p><em>S</em>ingle Responsibility<br><em>O</em>pen closed<br><em>L</em>Liskov substitution<br><em>I</em>nterface segreation<br><em>D</em>ependency inversion</p>
+<h2 id="Single-Responsibility"><a href="#Single-Responsibility" class="headerlink" title="Single Responsibility"></a>Single Responsibility</h2><p>A class should have one single responsibility, and this should be encapsulated by the class. There should only be one reason for creating the class.</p>
+<p>When I come across classes that violate this, it’s easy to tell. They are the classes with named like ‘Manager’ and have thousands of lines of code. Refactor that up into smaller, cleaner classes for better quality code.</p>
+<h2 id="Open-Closed"><a href="#Open-Closed" class="headerlink" title="Open Closed"></a>Open Closed</h2><p>Application code should be open for extension, but closed for modification. Simply put, new functionality should be added through new classes and have minimal requirement to modify existing functionality.</p>
+<p>How would I do this? Through the use of interfaces mainly, but there are other approaches such as subclasses to help abstract any implementation details. </p>
+<h2 id="Liskov-Substitution"><a href="#Liskov-Substitution" class="headerlink" title="Liskov Substitution"></a>Liskov Substitution</h2><p>This principle states that any derived class should be perfectly substitutable for its base class. </p>
+<h2 id="Interface-Segregation"><a href="#Interface-Segregation" class="headerlink" title="Interface Segregation"></a>Interface Segregation</h2><p>No client should be forced to implement methods which it does not use, and contracts should be broken down into thin ones. </p>
+<p>Similar to SRP, this is about creating smaller interfaces to keep your code decoupled.</p>
+<h2 id="Dependency-Inversion"><a href="#Dependency-Inversion" class="headerlink" title="Dependency Inversion"></a>Dependency Inversion</h2><p>Your high level class should not depend on your low level classes, this is about abstractions and keeping the layers of your software decoupled.</p>
+<p>I started using this principle when I really started seeing the light with unit tests, and using dependency injection became central to a lot of the code I was writing. Say I have a service class responsible for updating stock quantities and the new stock quantities are to be persisted to a database. There’s a calcuation operation there and a persistence operation. The persistence should be abstracted into its own class, and the calculation class would have the persistence class injected into it.</p>
+<p>I’m not the most articulate of people, but maybe next time I get asked this question in an interview I’ll be able to provide a slightly more succinct answer than before.</p>
 
-    
-</a>
-
-        
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/Hackerank/">Hackerank</a>
-            </p>
-            <p class="date"><time datetime="2016-09-29T20:52:32.000Z" itemprop="datePublished">2016-09-29</time></p>
         </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2016/09/29/Linked-List-Detect-a-Cycle/">Linked List: Detect a Cycle</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            HackerRank Challenge:https://www.hackerrank.com/challenges/ctci-linked-list-cycle
-My Submission:12345678910bool has_cycle(Node* head) &#123;    // Complete this function        int t = 0;    while (he
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2016/09/28/SOLID-Principles/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-</span>
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <p class="category">
+        <footer class="article-footer">
             
-            </p>
-            <p class="date"><time datetime="2016-09-28T18:53:06.000Z" itemprop="datePublished">2016-09-28</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2016/09/28/SOLID-Principles/">SOLID Principles</a>
-        </h1>
-    
 
-        <p class="article-excerpt">
-            Well, I completely bungled a job interview by failing to describe what S.O.L.I.D is, even though it’s part of my daily programming life and I’ve even asked programers the same question when I’ve inter
-        </p>
+
+
+    <a data-url="http://yoursite.com/2016/09/28/SOLID-Principles/" data-id="citothnje0006kko1nj4gze3e" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
     </div>
 </article>
-    
-        </div>
-    
 
+    <section id="comments">
     
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2016/08/31/Unit-Testing-CloudStorageAccount/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-</span>
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <p class="category">
-            
-            </p>
-            <p class="date"><time datetime="2016-08-31T22:24:06.000Z" itemprop="datePublished">2016-08-31</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2016/08/31/Unit-Testing-CloudStorageAccount/">Unit Testing CloudStorageAccount</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            In my previous post I created a very simple service to upload a document to Azure within ASP.Net Core. Comitting that code alone isn’t going to be enough for me, where are my tests?!? I ask…
-For this 
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2016/08/31/Document-Service-with-Azure/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-</span>
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <p class="category">
-            
-            </p>
-            <p class="date"><time datetime="2016-08-31T21:37:22.000Z" itemprop="datePublished">2016-08-31</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2016/08/31/Document-Service-with-Azure/">Document Service with Azure and ASP.Net Core.</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            In many applications I write, there is usually a requirement to upload a file from the browser. I’ve written articles about this before, but now I am going to refactor the earlier approach and extract
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2016/07/01/Unit-Testing-with-Visual-Studio-and-NET-Core/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-</span>
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <p class="category">
-            
-            </p>
-            <p class="date"><time datetime="2016-07-01T14:05:55.000Z" itemprop="datePublished">2016-07-01</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2016/07/01/Unit-Testing-with-Visual-Studio-and-NET-Core/">Unit Testing with Visual Studio and .NET Core</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            This is a quick blog post to document the trouble I had setting up Unit testing and .NET Core. I kept having problems with the Test Runner not able to discover the unit tests in my project, and the fo
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2016/03/11/I-don-t-like-the-Repository-pattern/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-</span>
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <p class="category">
-            
-            </p>
-            <p class="date"><time datetime="2016-03-11T16:45:51.000Z" itemprop="datePublished">2016-03-11</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2016/03/11/I-don-t-like-the-Repository-pattern/">I don&#39;t like the Repository pattern</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            Separation of Concerns has been a big driver in the design of modern software, from the days of VB6 when DAL and BLL components were the done thing, and now Repository or ActiveRecord patterns.
-On it’
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-
-    </div></section>
-
-
+    </section>
 
                         </div>
                     </section>
@@ -444,6 +273,29 @@ On it’
             
         </ul>
     </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2016/09/29/Linked-List-Detect-a-Cycle/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            Linked List: Detect a Cycle
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2016/08/31/Unit-Testing-CloudStorageAccount/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Unit Testing CloudStorageAccount</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
     
     <div class="widgets-container">
         

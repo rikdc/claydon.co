@@ -3,24 +3,24 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Hello World | claydon.co</title>
+    <title>I don&#39;t like the Repository pattern | claydon.co</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="" />
+        <meta name="keywords" content="cqs,entityframework" />
     
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+    <meta name="description" content="Separation of Concerns has been a big driver in the design of modern software, from the days of VB6 when DAL and BLL components were the done thing, and now Repository or ActiveRecord patterns.
+On it’">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2016/08/31/hello-world/index.html">
+<meta property="og:title" content="I don't like the Repository pattern">
+<meta property="og:url" content="http://yoursite.com/2016/03/11/I-don-t-like-the-Repository-pattern/index.html">
 <meta property="og:site_name" content="claydon.co">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2016-08-31T19:28:56.423Z">
+<meta property="og:description" content="Separation of Concerns has been a big driver in the design of modern software, from the days of VB6 when DAL and BLL components were the done thing, and now Repository or ActiveRecord patterns.
+On it’">
+<meta property="og:updated_time" content="2016-09-11T15:50:59.386Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="I don't like the Repository pattern">
+<meta name="twitter:description" content="Separation of Concerns has been a big driver in the design of modern software, from the days of VB6 when DAL and BLL components were the done thing, and now Repository or ActiveRecord patterns.
+On it’">
     
 
     
@@ -68,7 +68,7 @@ Quick">
                                     <a class="main-nav-list-link" href="/">Home</a>
                                 </li>
                             
-                                        
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Hackerank/">Hackerank</a></li></ul>
                                     
                                 <li class="main-nav-list-item" >
                                     <a class="main-nav-list-link" href="/about/index.html">About</a>
@@ -131,14 +131,14 @@ Quick">
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-hello-world" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-I-don-t-like-the-Repository-pattern" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        Hello World
+        I don&#39;t like the Repository pattern
         </h1>
     
 
@@ -146,23 +146,25 @@ Quick">
         
         
             <div class="article-subtitle">
-                <a href="/2016/08/31/hello-world/" class="article-date">
-    <time datetime="2016-08-31T19:28:56.421Z" itemprop="datePublished">2016-08-31</time>
+                <a href="/2016/03/11/I-don-t-like-the-Repository-pattern/" class="article-date">
+    <time datetime="2016-03-11T16:45:51.000Z" itemprop="datePublished">2016-03-11</time>
 </a>
                 
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cqs/">cqs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/entityframework/">entityframework</a></li></ul>
+
             </div>
         
         
         <div class="article-entry" itemprop="articleBody">
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+            <p>Separation of Concerns has been a big driver in the design of modern software, from the days of VB6 when DAL and BLL components were the done thing, and now Repository or ActiveRecord patterns.</p>
+<p>On it’s own, the repository pattern is not a bad concept. It’s not unreasonable to wrap up your ORM into a common interface and often the reason for this has been testability. Another reason to wrap your ORM up is to allow easy switching from ORM providers, and although not wrong I’ve often regarded such an approach risky and I’ve yet to find a compelling reason to do so.</p>
+<p>NHibernate and Entity Framework these days are a lot easier to test with, and particularly with Entity Framework (I’ve not used NHibernate for several years now), it’s already an implementation of it’s own Repository and Unit of Work pattern, so for me creating a wrapper around this smells of over abstraction, and a big chunk of ‘not going to need it’.</p>
+<p>That being said, Entity Framework being used directly inside your App, or controllers is still not a good idea because you still want to maintain separation of concerns. </p>
+<p>How do I approach this? I like CQS, where each Command or Query is its own object. For example, a class that queries for a list of records from a database.</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ListSkills</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> DatabaseContext _context;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ListSkills</span>(<span class="params">DatabaseContext context</span>)</span></div><div class="line">    &#123;</div><div class="line">        _context = context;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">async</span> Task&lt;IList&lt;Skill&gt;&gt; Execute()</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">await</span> _context.Skills.ToListAsync();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Followed by a class to write your data.</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">AddSkills</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> DatabaseContext _context;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ListSkills</span>(<span class="params">DatabaseContext context</span>)</span></div><div class="line">    &#123;</div><div class="line">        _context = context;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task&lt;Skill&gt; <span class="title">Execute</span>(<span class="params">Skill newSkill</span>)</span></div><div class="line">    &#123;</div><div class="line">        _context.Skills.Add(newSkill);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">await</span> _context.Skills.SaveChangesAsync();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Each class has a single responsibility and is clearly named and can be tested. I’ve used this approach almost exclusively now for a few years and am a big advocate of it if for no other reason than it really has made writing unit tests vastly easier.</p>
 
         </div>
         <footer class="article-footer">
@@ -170,7 +172,7 @@ Quick">
 
 
 
-    <a data-url="http://yoursite.com/2016/08/31/hello-world/" data-id="cisjjk7rz0002bko15dljdkb6" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://yoursite.com/2016/03/11/I-don-t-like-the-Repository-pattern/" data-id="citothnj10001kko1wr9qpboz" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -262,17 +264,25 @@ Quick">
                 </li>
                 
             
+                
+                <li>
+                    <a class="social-tooltip" title="wpforms" href="https://www.hackerrank.com/rikdc" target="_blank">
+                        <i class="icon fa fa-wpforms"></i>
+                    </a>
+                </li>
+                
+            
         </ul>
     </div>
     
         
 <nav id="article-nav">
     
-        <a href="/2016/08/31/Document-Service-with-Azure/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2016/07/01/Unit-Testing-with-Visual-Studio-and-NET-Core/" id="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption">newer</strong>
         <p class="article-nav-title">
         
-            Document Service with Azure and ASP.Net Core.
+            Unit Testing with Visual Studio and .NET Core
         
         </p>
         <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
@@ -290,6 +300,46 @@ Quick">
         <h3 class="widget-title">recents</h3>
         <div class="widget">
             <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/09/29/Linked-List-Detect-a-Cycle/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Hackerank/">Hackerank</a></p>
+                            <p class="item-title"><a href="/2016/09/29/Linked-List-Detect-a-Cycle/" class="title">Linked List: Detect a Cycle</a></p>
+                            <p class="item-date"><time datetime="2016-09-29T20:52:32.000Z" itemprop="datePublished">2016-09-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/09/28/SOLID-Principles/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/09/28/SOLID-Principles/" class="title">SOLID Principles</a></p>
+                            <p class="item-date"><time datetime="2016-09-28T18:53:06.000Z" itemprop="datePublished">2016-09-28</time></p>
+                        </div>
+                    </li>
                 
                     <li>
                         
@@ -334,7 +384,7 @@ Quick">
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2016/08/31/hello-world/" class="thumbnail">
+                            <a href="/2016/07/01/Unit-Testing-with-Visual-Studio-and-NET-Core/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -346,8 +396,8 @@ Quick">
                         
                         <div class="item-inner">
                             <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/08/31/hello-world/" class="title">Hello World</a></p>
-                            <p class="item-date"><time datetime="2016-08-31T19:28:56.421Z" itemprop="datePublished">2016-08-31</time></p>
+                            <p class="item-title"><a href="/2016/07/01/Unit-Testing-with-Visual-Studio-and-NET-Core/" class="title">Unit Testing with Visual Studio and .NET Core</a></p>
+                            <p class="item-date"><time datetime="2016-07-01T14:05:55.000Z" itemprop="datePublished">2016-07-01</time></p>
                         </div>
                     </li>
                 
@@ -357,13 +407,20 @@ Quick">
 
             
                 
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hackerank/">Hackerank</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
 
             
                 
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -373,7 +430,7 @@ Quick">
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">tags</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/aspnet-core/">aspnet-core</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/azure/">azure</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/aspnet-core/">aspnet-core</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/azure/">azure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cqs/">cqs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/entityframework/">entityframework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hackerank/">hackerank</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xunit/">xunit</a><span class="tag-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -383,7 +440,7 @@ Quick">
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/aspnet-core/" style="font-size: 10px;">aspnet-core</a> <a href="/tags/azure/" style="font-size: 10px;">azure</a>
+            <a href="/tags/aspnet-core/" style="font-size: 20px;">aspnet-core</a> <a href="/tags/azure/" style="font-size: 10px;">azure</a> <a href="/tags/cqs/" style="font-size: 10px;">cqs</a> <a href="/tags/entityframework/" style="font-size: 10px;">entityframework</a> <a href="/tags/hackerank/" style="font-size: 10px;">hackerank</a> <a href="/tags/xunit/" style="font-size: 15px;">xunit</a>
         </div>
     </div>
 

@@ -3,15 +3,24 @@
 <head>
     <meta charset="utf-8">
     
-    <title>claydon.co</title>
+    <title>Arrays: Left Rotation | claydon.co</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta property="og:type" content="website">
-<meta property="og:title" content="claydon.co">
-<meta property="og:url" content="http://yoursite.com/index.html">
+        <meta name="keywords" content="hackerrank" />
+    
+    <meta name="description" content="HackerRank Challenge:https://www.hackerrank.com/challenges/ctci-array-left-rotation
+My Submission:12345678910111213141516171819202122232425using System;using System.Collections.Generic;using System.IO">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Arrays: Left Rotation">
+<meta property="og:url" content="http://yoursite.com/2016/09/29/Arrays-Left-Rotation/index.html">
 <meta property="og:site_name" content="claydon.co">
+<meta property="og:description" content="HackerRank Challenge:https://www.hackerrank.com/challenges/ctci-array-left-rotation
+My Submission:12345678910111213141516171819202122232425using System;using System.Collections.Generic;using System.IO">
+<meta property="og:updated_time" content="2016-09-29T21:18:29.608Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="claydon.co">
+<meta name="twitter:title" content="Arrays: Left Rotation">
+<meta name="twitter:description" content="HackerRank Challenge:https://www.hackerrank.com/challenges/ctci-array-left-rotation
+My Submission:12345678910111213141516171819202122232425using System;using System.Collections.Generic;using System.IO">
     
 
     
@@ -118,330 +127,110 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <em class="page-title-link" data-url="home">Home</em>
+    <a class="page-title-link" href="/categories/Hackerrank/">Hackerrank</a>
     </h1>
 </div>
                         <div class="main-body-content">
-                            
+                            <article id="hackerrank-Arrays-Left-Rotation" class="article article-single article-type-hackerrank" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Arrays: Left Rotation
+        </h1>
+    
 
-    
-    
+            </header>
         
         
-        <section class="archives-wrap">
-            <div class="archive-year-wrap">
-                <a href="/archives/2016" class="archive-year"><i class="icon fa fa-calendar-o"></i>2016</a>
+            <div class="article-subtitle">
+                <a href="/2016/09/29/Arrays-Left-Rotation/" class="article-date">
+    <time datetime="2016-09-29T20:52:32.000Z" itemprop="datePublished">2016-09-29</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hackerrank/">hackerrank</a></li></ul>
+
             </div>
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
         
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/Hackerrank/">Hackerrank</a>
-            </p>
-            <p class="date"><time datetime="2016-09-30T13:20:45.000Z" itemprop="datePublished">2016-09-30</time></p>
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="HackerRank-Challenge"><a href="#HackerRank-Challenge" class="headerlink" title="HackerRank Challenge:"></a>HackerRank Challenge:</h2><p><a href="https://www.hackerrank.com/challenges/ctci-array-left-rotation" target="_blank" rel="external">https://www.hackerrank.com/challenges/ctci-array-left-rotation</a></p>
+<h2 id="My-Submission"><a href="#My-Submission" class="headerlink" title="My Submission:"></a>My Submission:</h2><figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">using</span> System;</div><div class="line"><span class="keyword">using</span> System.Collections.Generic;</div><div class="line"><span class="keyword">using</span> System.IO;</div><div class="line"><span class="keyword">using</span> System.Linq;</div><div class="line"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params">String[] args</span>) </span>&#123;</div><div class="line">        <span class="keyword">string</span>[] tokens_n = Console.ReadLine().Split(<span class="string">' '</span>);</div><div class="line">        <span class="keyword">int</span> d = Convert.ToInt32(tokens_n[<span class="number">1</span>]);</div><div class="line">        <span class="keyword">string</span>[] a_temp = Console.ReadLine().Split(<span class="string">' '</span>);</div><div class="line">        <span class="keyword">int</span>[] a = Array.ConvertAll(a_temp,Int32.Parse);</div><div class="line">        </div><div class="line">        List&lt;<span class="keyword">int</span>&gt; data = a.ToList();</div><div class="line">        List&lt;<span class="keyword">int</span>&gt; buffer = <span class="keyword">new</span> List&lt;<span class="keyword">int</span>&gt;();</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; d; i++) &#123;</div><div class="line">            buffer.Add(data[<span class="number">0</span>]);</div><div class="line">            data.RemoveAt(<span class="number">0</span>);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        data.AddRange(buffer);</div><div class="line">        </div><div class="line">        Console.WriteLine(String.Join(<span class="string">" "</span>, data));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
         </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2016/09/30/Cut-The-Sticks/">Cut The Sticks</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            HackerRank Challenge:https://www.hackerrank.com/challenges/cut-the-sticks
-
-Easy
-
-My Submission:12345678910111213141516171819202122232425262728293031323334353637using System;using System.Collections.Ge
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/Hackerrank/">Hackerrank</a>
-            </p>
-            <p class="date"><time datetime="2016-09-29T21:15:12.000Z" itemprop="datePublished">2016-09-29</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2016/09/29/Camel-Case/">Camel Case</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            HackerRank Challenge:https://www.hackerrank.com/challenges/camelcase
-
-Easy
-
-My Submission:123456789101112131415using System;using System.Collections.Generic;using System.IO;using System.Linq;using Sys
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/Hackerrank/">Hackerrank</a>
-            </p>
-            <p class="date"><time datetime="2016-09-29T21:15:12.000Z" itemprop="datePublished">2016-09-29</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2016/09/29/Super-Reduced-String/">Super Reduced String</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            HackerRank Challenge:https://www.hackerrank.com/challenges/reduced-string
-
-Easy
-
-My Submission:12345678910111213141516171819202122232425262728293031323334353637using System;using System.Collections.Ge
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/Hackerrank/">Hackerrank</a>
-            </p>
-            <p class="date"><time datetime="2016-09-29T20:52:32.000Z" itemprop="datePublished">2016-09-29</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2016/09/29/Arrays-Left-Rotation/">Arrays: Left Rotation</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            HackerRank Challenge:https://www.hackerrank.com/challenges/ctci-array-left-rotation
-My Submission:12345678910111213141516171819202122232425using System;using System.Collections.Generic;using System.IO
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/Hackerrank/">Hackerrank</a>
-            </p>
-            <p class="date"><time datetime="2016-09-29T20:52:32.000Z" itemprop="datePublished">2016-09-29</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2016/09/29/Linked-List-Detect-a-Cycle/">Linked List: Detect a Cycle</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            HackerRank Challenge:https://www.hackerrank.com/challenges/ctci-linked-list-cycle
-My Submission:12345678910bool has_cycle(Node* head) &#123;    // Complete this function        int t = 0;    while (he
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <p class="category">
+        <footer class="article-footer">
             
-            </p>
-            <p class="date"><time datetime="2016-09-28T18:53:06.000Z" itemprop="datePublished">2016-09-28</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2016/09/28/SOLID-Principles/">SOLID Principles</a>
-        </h1>
-    
 
-        <p class="article-excerpt">
-            Well, I completely bungled a job interview by failing to describe what S.O.L.I.D is, even though it’s part of my daily programming life and I’ve even asked programers the same question when I’ve inter
-        </p>
+
+
+    <a data-url="http://yoursite.com/2016/09/29/Arrays-Left-Rotation/" data-id="citpsytbl0002yso11wjjhhr2" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
     </div>
 </article>
-    
-        </div>
-    
 
+    <section id="comments">
     
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <p class="category">
-            
-            </p>
-            <p class="date"><time datetime="2016-08-31T22:24:06.000Z" itemprop="datePublished">2016-08-31</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2016/08/31/Unit-Testing-CloudStorageAccount/">Unit Testing CloudStorageAccount</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            In my previous post I created a very simple service to upload a document to Azure within ASP.Net Core. Comitting that code alone isn’t going to be enough for me, where are my tests?!? I ask…
-For this 
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <p class="category">
-            
-            </p>
-            <p class="date"><time datetime="2016-08-31T21:37:22.000Z" itemprop="datePublished">2016-08-31</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2016/08/31/Document-Service-with-Azure/">Document Service with Azure and ASP.Net Core.</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            In many applications I write, there is usually a requirement to upload a file from the browser. I’ve written articles about this before, but now I am going to refactor the earlier approach and extract
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <p class="category">
-            
-            </p>
-            <p class="date"><time datetime="2016-07-01T14:05:55.000Z" itemprop="datePublished">2016-07-01</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2016/07/01/Unit-Testing-with-Visual-Studio-and-NET-Core/">Unit Testing with Visual Studio and .NET Core</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            This is a quick blog post to document the trouble I had setting up Unit testing and .NET Core. I kept having problems with the Test Runner not able to discover the unit tests in my project, and the fo
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <p class="category">
-            
-            </p>
-            <p class="date"><time datetime="2016-03-11T16:45:51.000Z" itemprop="datePublished">2016-03-11</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2016/03/11/I-don-t-like-the-Repository-pattern/">I don&#39;t like the Repository pattern</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            Separation of Concerns has been a big driver in the design of modern software, from the days of VB6 when DAL and BLL components were the done thing, and now Repository or ActiveRecord patterns.
-On it’
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-
-    </div></section>
-
-
+    </section>
 
                         </div>
                     </section>
@@ -477,6 +266,29 @@ On it’
             
         </ul>
     </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2016/09/29/Super-Reduced-String/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            Super Reduced String
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2016/09/29/Linked-List-Detect-a-Cycle/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Linked List: Detect a Cycle</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
     
     <div class="widgets-container">
         
